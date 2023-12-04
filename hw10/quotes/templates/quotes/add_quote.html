@@ -1,36 +1,22 @@
 {% extends 'quotes/base.html' %}
 
 {% block content %}
-{% load extract %}
-<form>
+<form method='post' action="{%url 'quotes:add_quote'%}">
+    {% csrf_token %}
     <div class="mb-3">
         <label for="exampleInputQuote" class="form-label">Quote</label>
         <input type="text" class="form-control" id="exampleInputQuote" aria-describedby="emailHelp"
-               placeholder="Enter a quote">
+               placeholder="Enter a quote" name="quote">
         <div id="quoteHelp" class="form-text">e.g.: To be or not to be</div>
     </div>
-</form>
-<form>
     <div class="mb-3">
         <label for="exampleInputQuote" class="form-label">Author</label>
-        <div class="dropdown">
-            <button id="dropdownMenuButton" class="btn btn-secondary dropdown-toggle" type="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                Choose author
-            </button>
-            <ul class="dropdown-menu" style="max-height: 200px; overflow-y: scroll;">
-                {% for author in authors %}
-                <li><a class="dropdown-item">{{author.fullname}}</a></li>
-                {% endfor %}
-            </ul>
-        </div>
+        <select class="form-control" id="authorSelect" name="author">
+            {% for author in authors %}
+            <option value="{{ author.id }}">{{ author.fullname }}</option>
+            {% endfor %}
+        </select>
         <div id="quoteAuthorHelp" class="form-text">Choose an author</div>
-    </div>
-    <div class="mb-3">
-        <label for="inputTags" class="form-label">Tags</label>
-        <input type="text" class="form-control" id="inputTags" name="tags" placeholder="Enter tags separated by commas">
-        <div id="tagsHelp" class="form-text">Add some tags for the quote</div>
     </div>
     <button type="submit" class="btn btn-success">Submit</button>
 </form>

@@ -22,14 +22,14 @@
                 </h1>
             </div>
             <div class="col-md-4 text-end">
-
-                <a href="{% url 'app_auth:logout' %}" class="btn btn-primary my-3">Logout</a>
-                <a href="{% url 'quotes:add_author' %}" class="btn btn-primary my-3">Your authors</a>
-                <a href="{% url 'quotes:add_quote' %}" class="btn btn-primary my-3">Your quotes</a>
-
-                <a href="{% url 'app_auth:signup' %}" class="btn btn-primary my-3">Signup</a>
+                {%if user.is_authenticated %}
+                <a href="{% url 'quotes:add_author' %}" class="btn btn-primary my-3">Add author</a>
+                <a href="{% url 'quotes:add_quote' %}" class="btn btn-primary my-3">Add quote</a>
+                <a href="{% url 'app_auth:logout' %}" class="btn btn-danger my-3">Logout</a>
+                {% else %}
+                <a href="{% url 'app_auth:signup' %}" class="btn btn-primary my-3">Sign Up</a>
                 <a href="{% url 'app_auth:signin' %}" class="btn btn-primary my-3">Sign In</a>
-
+                {% endif %}
             </div>
         </div>
     </div>

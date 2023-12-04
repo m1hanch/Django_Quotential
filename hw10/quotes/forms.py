@@ -36,4 +36,5 @@ class QuoteForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(QuoteForm, self).__init__(*args, **kwargs)
         self.fields['tags'].widget = CheckboxSelectMultiple()
+        self.fields['tags'].required = False
         self.fields['author'].widget = Select()

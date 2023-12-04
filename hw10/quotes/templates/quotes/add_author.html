@@ -1,32 +1,37 @@
 {% extends 'quotes/base.html' %}
 
 {% block content %}
+{% if form.errors and form.non_field_errors %}
+<div class="alert alert-danger" role="alert">
+    {{form.non_field_errors}}
+</div>
+{% endif %}
 <form action="{% url 'quotes:add_author' %}" method="post">
     {% csrf_token %}
     <div class="mb-3">
         <label class="form-label">Full name</label>
-<!--        <input type="text" class="form-control" id="exampleInputAuthor" aria-describedby="emailHelp">-->
+        <!--        <input type="text" class="form-control" id="exampleInputAuthor" aria-describedby="emailHelp">-->
         {{form.fullname}}
         <div id="authorHelp" class="form-text">Input the name of a new author</div>
         <span>{{form.errors.fullname}}</span>
     </div>
     <div class="mb-3">
         <label class="form-label">Date of birth</label>
-<!--        <input type="text" class="form-control" id="exampleInputBornDate">-->
+        <!--        <input type="text" class="form-control" id="exampleInputBornDate">-->
         {{form.born_date}}
         <div id="bornDateHelp" class="form-text">Format e.g.: March 14, 1879</div>
         <span>{{form.errors.born_date}}</span>
     </div>
     <div class="mb-3">
         <label class="form-label">Place of birth</label>
-<!--        <input type="text" class="form-control" id="exampleInputBornLocation">-->
+        <!--        <input type="text" class="form-control" id="exampleInputBornLocation">-->
         {{form.born_location}}
         <div id="bornLocationHelp" class="form-text">Format e.g.: in Ulm, Germany</div>
         <span>{{form.errors.born_location}}</span>
     </div>
     <div class="mb-3">
         <label class="form-label">Description</label>
-<!--        <input type="text" class="form-control" id="exampleInputDescription">-->
+        <!--        <input type="text" class="form-control" id="exampleInputDescription">-->
         {{form.description}}
         <div id="descriptionHelp" class="form-text">Write some information about author</div>
         <span>{{form.errors.description}}</span>
