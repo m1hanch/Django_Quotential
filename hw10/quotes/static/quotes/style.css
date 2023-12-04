@@ -1,0 +1,31 @@
+.tag{
+    padding: 2px 5px;
+    border-radius: 5px;
+    color: white;
+    font-size: small;
+    background-color: #7CA3E6;
+}
+.header-box {
+    padding: 20px 0;
+}
+
+.footer {
+    padding: 20px 0;
+    background-color: #f8f9fa;
+    border-top: 1px solid #e7e7e7;
+}
+
+.card {
+    box-shadow: 2px 2px 3px #333333;
+}
+
+.page-link{
+    background-color: #7CA3E6;
+    color: white;
+    box-shadow: 2px 2px 3px #7CA3E6;
+}
+
+.scrollable-dropdown {
+    max-height: 200px; /* Adjust this value based on your requirement */
+    overflow-y: scroll;
+}
