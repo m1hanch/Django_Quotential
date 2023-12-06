@@ -14,7 +14,7 @@
     </div>
     <div class="card-header">
         Tags: {% for tag in quote.tags.all %}
-        <a class="tag" href="">{{tag.name}}</a>
+        <a class="tag" href="{%url 'quotes:tag_search' tag.name %}">{{tag.name}}</a>
         {% endfor %}
     </div>
 </div>

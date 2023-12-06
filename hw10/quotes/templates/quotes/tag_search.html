@@ -1,0 +1,20 @@
+{% extends 'quotes/base.html' %}
+{% block content %}
+{% for quote in quotes %}
+<div class="card mb-3">
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <p>{{quote.quote}}</p>
+            <footer class="blockquote-footer">{{quote.author.fullname}} (<a
+                    href="{% url 'quotes:author_detail' quote.author.id %}">About</a>)
+            </footer>
+        </blockquote>
+    </div>
+    <div class="card-header">
+        Tags: {% for tag in quote.tags.all %}
+        <a class="tag" href="{% url 'quotes:tag_search' tag.name %}">{{tag.name}}</a>
+        {% endfor %}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
