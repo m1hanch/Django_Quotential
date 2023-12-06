@@ -28,13 +28,11 @@ class TagForm(ModelForm):
 
 class QuoteForm(ModelForm):
     quote = TextInput()
-
+    tags = CharField(widget=TextInput(), required=False)
     class Meta:
         model = Quote
         fields = ['quote', 'tags', 'author']
 
     def __init__(self, *args, **kwargs):
         super(QuoteForm, self).__init__(*args, **kwargs)
-        self.fields['tags'].widget = CheckboxSelectMultiple()
-        self.fields['tags'].required = False
         self.fields['author'].widget = Select()

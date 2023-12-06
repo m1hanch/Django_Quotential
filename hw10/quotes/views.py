@@ -33,7 +33,14 @@ def add_quote(request):
     if request.method == 'POST':
         form = QuoteForm(request.POST, instance=Quote())
         if form.is_valid():
-            form.save()
+            quote = form.save(commit=False)
+            quote.save()
+            tag_names = form.cleaned_data['tags'].split(',')
+            for name in tag_names:
+                tag, created = Tag.objects.get_or_create(name=name.strip())
+                quote.tags.add(tag)
+            Quotes(quote=form.cleaned_data['quote'], tags=form.cleaned_data['tags'].split(','),
+                   author=form.cleaned_data['author'].pk).save()
             return redirect(to='quotes:index')
         print(form.errors)
     return render(request, template_name='quotes/add_quote.html', context={'authors': authors})
@@ -42,4 +49,3 @@ def add_quote(request):
 def author_detail(request, author_id):
     author = get_object_or_404(Author, pk=author_id)
     return render(request, 'quotes/author_detail.html', {'author': author})
-
