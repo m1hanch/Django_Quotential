@@ -1,10 +1,10 @@
 import json
-from datetime import datetime
+
 
 from mongoengine import StringField, DateField, Document, ListField, ReferenceField, connect
-
+from ..hw10.settings import SECRET_PASS
 connect(db='hw10',
-        host='mongodb+srv://mihanch:****@cluster0.xo49jrs.mongodb.net/')
+        host=f'mongodb+srv://mihanch:{SECRET_PASS}@cluster0.xo49jrs.mongodb.net/')
 
 
 class Authors(Document):
