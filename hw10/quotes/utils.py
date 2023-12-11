@@ -1,7 +1,9 @@
 from mongoengine import connect, Document, StringField, DateField, ListField, ReferenceField
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
-
-conn = connect(db='hw10', host='mongodb+srv://mihanch:mihaJ0107@cluster0.xo49jrs.mongodb.net/')
+conn = connect(db='hw10', host=f'mongodb+srv://mihanch:{os.getenv("MONGO_PASS")}@cluster0.xo49jrs.mongodb.net/')
 
 
 class Authors(Document):

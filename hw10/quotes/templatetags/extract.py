@@ -17,7 +17,3 @@ def get_author(id_):
 
 register.filter('author', get_author)
 
-
-@register.filter(name='get_last_three_pages')
-def get_last_three_pages(num_pages):
-    return range(max(1, num_pages - 2), num_pages + 1)

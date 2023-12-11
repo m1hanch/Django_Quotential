@@ -22,8 +22,11 @@
 <nav aria-label="Page navigation example">
 
     <ul class="pagination justify-content-between">
-        <!-- Previous Page Link -->
+        <!-- First and Previous Page Link -->
         <li class="{% if not quotes.has_previous %} page-item disabled {%else%} page-item {% endif %}">
+            <a class="page-link" style="display: inline-block;margin-right: 5px;"
+               href="{% if quotes.has_previous %} {% url 'quotes:index_paginate' 1%} {%else%} # {% endif %}">&lt;&lt;&lt;
+                First</a>
             <a class="page-link"
                href="{% if quotes.has_previous %} {% url 'quotes:index_paginate' quotes.previous_page_number%} {%else%} # {% endif %}">←Previous</a>
         </li>

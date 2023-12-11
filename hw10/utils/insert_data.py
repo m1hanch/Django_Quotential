@@ -2,9 +2,12 @@ import json
 
 
 from mongoengine import StringField, DateField, Document, ListField, ReferenceField, connect
-from ..hw10.settings import SECRET_PASS
+import os
+from dotenv import load_dotenv
+# Load secret .env file
+load_dotenv()
 connect(db='hw10',
-        host=f'mongodb+srv://mihanch:{SECRET_PASS}@cluster0.xo49jrs.mongodb.net/')
+        host=f'mongodb+srv://mihanch:{os.getenv("MONGO_PASS")}@cluster0.xo49jrs.mongodb.net/')
 
 
 class Authors(Document):

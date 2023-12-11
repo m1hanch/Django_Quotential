@@ -1,13 +1,16 @@
 import django
 import os
 from pymongo import MongoClient
-from ..hw10.settings import SECRET_PASS
+from dotenv import load_dotenv
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', "hw10.settings")
 django.setup()
 
+# Load secret .env file
+load_dotenv()
 from quotes.models import Quote, Tag, Author  # noqa
 
-client = MongoClient(f'mongodb+srv://mihanch:{SECRET_PASS}@cluster0.xo49jrs.mongodb.net/')
+client = MongoClient(f'mongodb+srv://mihanch:{os.getenv("MONGO_PASS")}@cluster0.xo49jrs.mongodb.net/')
 db = client.hw10
 authors = db.authors.find()
 for author in authors:

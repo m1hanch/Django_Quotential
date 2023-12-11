@@ -1,10 +1,11 @@
-.tag{
+.tag {
     padding: 2px 5px;
     border-radius: 5px;
     color: white;
     font-size: small;
     background-color: #7CA3E6;
 }
+
 .header-box {
     padding: 20px 0;
 }
@@ -19,13 +20,15 @@
     box-shadow: 2px 2px 3px #333333;
 }
 
-.page-link{
+.page-link {
     background-color: #7CA3E6;
     color: white;
     box-shadow: 2px 2px 3px #7CA3E6;
+    display: inline-block;
+    margin-right: 5px;
 }
 
 .scrollable-dropdown {
-    max-height: 200px; /* Adjust this value based on your requirement */
+    max-height: 200px;
     overflow-y: scroll;
 }

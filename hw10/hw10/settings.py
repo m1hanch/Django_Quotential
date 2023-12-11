@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 from .secrets import SECRET_PASS
+import os
+from dotenv import load_dotenv
+# Load secret .env file
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -19,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-vx6_9-i1bwzgv@ei13t^b70frevb-%&(9eykkx)s8akpj5re*s'
-SECRET_KEY = SECRET_PASS
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -78,8 +82,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'hw10',
-        'USER': 'postgres',
-        'PASSWORD': '123456789',
+        'USER': os.getenv('DB_USERNAME'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': 'localhost',  # Or an IP Address that your DB is hosted on
         'PORT': '5432',
     }

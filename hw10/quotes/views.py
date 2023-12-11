@@ -8,9 +8,10 @@ from .models import Author, Tag, Quote
 
 def index(request, page=1):
     quotes = Quote.objects.all().order_by('id')  # noqa
-    paginator = Paginator(quotes, 10)  # Show 10 quotes per page
+    paginator = Paginator(quotes, 10)
     quotes_on_page = paginator.page(page)
-    return render(request, template_name='quotes/index.html', context={'page': page, 'quotes': quotes_on_page})
+    return render(request, template_name='quotes/index.html',
+                  context={'quotes': quotes_on_page})
 
 
 @login_required
@@ -54,4 +55,3 @@ def author_detail(request, author_id):
 def tag_search(request, tag):
     quotes = Quote.objects.filter(tags__name=tag)
     return render(request, 'quotes/tag_search.html', {'quotes': quotes})
-
