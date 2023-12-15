@@ -35,6 +35,8 @@
         <li class="ml-auto {% if not quotes.has_next %} page-item disabled {% endif %}">
             <a class="page-link"
                href="{% if quotes.has_next %} {%url 'quotes:index_paginate' quotes.next_page_number%} {%else%} # {% endif %}">Next→</a>
+            <a class="page-link"
+               href="{% if quotes.has_next %} {%url 'quotes:index_paginate' quotes.paginator.num_pages%} {%else%} # {% endif %}">Last &gt&gt&gt</a>
         </li>
     </ul>
 </nav>
