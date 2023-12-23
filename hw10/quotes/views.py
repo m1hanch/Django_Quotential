@@ -55,3 +55,8 @@ def author_detail(request, author_id):
 def tag_search(request, tag):
     quotes = Quote.objects.filter(tags__name=tag)
     return render(request, 'quotes/tag_search.html', {'quotes': quotes})
+
+
+def quote_comments(request, quote_id):
+    quote = Quote.objects.filter(pk=quote_id).first()
+    return render(request, template_name='quotes/quote_comments.html', context={'quote': quote})

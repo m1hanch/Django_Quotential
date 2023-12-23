@@ -10,5 +10,6 @@ urlpatterns = [
     path('add_quote/', views.add_quote, name='add_quote'),
     path('<int:page>', views.index, name='index_paginate'),
     path('quotes/<int:author_id>/', views.author_detail, name='author_detail'),
-    path('quotes/<str:tag>/', views.tag_search, name='tag_search')
+    path('quotes/<str:tag>/', views.tag_search, name='tag_search'),
+    path('<int:quote_id>/', views.quote_comments, name='quote_comments')
 ]
