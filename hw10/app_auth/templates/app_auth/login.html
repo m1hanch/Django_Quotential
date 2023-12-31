@@ -22,7 +22,7 @@
     {% if messages %}
     <div class="messages">
         {% for message in messages %}
-        <span {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</span>
+        <span {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>{{ message }}</span>
         {% endfor %}
     </div>
     {% endif %}
@@ -49,6 +49,9 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
         <button type="reset" class="btn btn-secondary">Reset</button>
+        <div class="small text-center">
+            <a href="{% url 'app_auth:password_reset' %}" class="text-center"><i>Forgot Password?</i></a>
+        </div>
     </form>
 </div>
 {%endblock %}

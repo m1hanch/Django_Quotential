@@ -22,3 +22,6 @@ class LoginForm(AuthenticationForm):
         model = User
         fields = ('username', 'password')
 
+
+class ResetPasswordForm(UserCreationForm):
+    email = EmailField(max_length=25, required=True, widget=EmailInput(attrs={"class": "form-control"}))
