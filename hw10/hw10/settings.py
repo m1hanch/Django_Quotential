@@ -131,11 +131,11 @@ LOGIN_URL = '/auth/signin'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.meta.ua'
-EMAIL_PORT = 465
+EMAIL_HOST = os.getenv('SMTP_SERVER')
+EMAIL_PORT = int(os.getenv('SMTP_PORT'))
 EMAIL_STARTTLS = False
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False
-EMAIL_HOST_USER = 'fastapi@meta.ua'
-EMAIL_HOST_PASSWORD = 'pythonCourse2023'
+EMAIL_HOST_USER = os.getenv('EMAIL_FROM')
+EMAIL_HOST_PASSWORD = os.getenv('SMTP_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

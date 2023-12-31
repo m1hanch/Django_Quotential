@@ -12,7 +12,6 @@ from .forms import RegisterForm, ResetPasswordForm
 from .utils import send_email_via_smtp
 
 
-
 class RegisterView(View):
     template_name = 'app_auth/register.html'
     form_class = RegisterForm
