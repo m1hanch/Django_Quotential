@@ -19,11 +19,25 @@
         <form action="{% url 'quotes:add_comment' quote.id %}" method="post">
             {% csrf_token %}
             <div class="input-group mb-3">
-                <input name="comment" type="text" class="form-control" placeholder="Leave a comment" aria-label="Leave a comment"
+                <input name="comment" type="text" class="form-control" placeholder="Leave a comment"
+                       aria-label="Leave a comment"
                        aria-describedby="button-addon2">
                 <button type="submit" class="btn btn-outline-secondary" id="button-addon2">Comment</button>
             </div>
         </form>
     </div>
+</div>
+<div class="col-md-8">
+    <h5>Comments:</h5>
+    {% for comment in comments %}
+    <div class="card mb-2">
+        <div class="card-body">
+            <p class="card-text">{{ comment.comment }}</p>
+            <footer class="blockquote-footer">{{ comment.user }}</footer>
+        </div>
+    </div>
+    {% empty %}
+    <p>No comments yet.</p>
+    {% endfor %}
 </div>
 {% endblock %}

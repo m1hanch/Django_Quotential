@@ -60,12 +60,15 @@ def tag_search(request, tag):
 
 def quote_comments(request, quote_id):
     quote = Quote.objects.filter(pk=quote_id).first()
-    return render(request, template_name='quotes/quote_comments.html', context={'quote': quote})
+    comments = Comment.objects.filter(quote=quote)
+    return render(request, template_name='quotes/quote_comments.html', context={'quote': quote, 'comments': comments})
 
 
-@login_required()
+@login_required
 def add_comment(request, quote_id):
     quote = Quote.objects.filter(pk=quote_id).first()
+    comments = Comment.objects.filter(quote=quote)
+    print(comments)
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -73,7 +76,7 @@ def add_comment(request, quote_id):
             comment.quote = quote
             comment.user = request.user
             comment.save()
-            return redirect(to='quotes:index')
+            return render(request, template_name='quotes/quote_comments.html', context={'quote': quote, 'comments': comments})
         else:
             print(form.errors)
-    return render(request, template_name='quotes/quote_comments.html', context={'quote': quote})
+    return render(request, template_name='quotes/quote_comments.html', context={'quote': quote, 'comments': comments})
