@@ -2,8 +2,9 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .utils import conn, Authors, Quotes
 from django.core.paginator import Paginator
-from .forms import AuthorForm, TagForm, QuoteForm
-from .models import Author, Tag, Quote
+from .forms import AuthorForm, TagForm, QuoteForm, CommentForm
+from .models import Author, Tag, Quote, Comment
+from django.contrib.auth.models import User
 
 
 def index(request, page=1):
@@ -59,4 +60,20 @@ def tag_search(request, tag):
 
 def quote_comments(request, quote_id):
     quote = Quote.objects.filter(pk=quote_id).first()
+    return render(request, template_name='quotes/quote_comments.html', context={'quote': quote})
+
+
+@login_required()
+def add_comment(request, quote_id):
+    quote = Quote.objects.filter(pk=quote_id).first()
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.quote = quote
+            comment.user = request.user
+            comment.save()
+            return redirect(to='quotes:index')
+        else:
+            print(form.errors)
     return render(request, template_name='quotes/quote_comments.html', context={'quote': quote})

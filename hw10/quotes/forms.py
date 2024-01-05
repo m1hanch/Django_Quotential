@@ -1,6 +1,6 @@
 from django.forms import ModelForm, CharField, TextInput, CheckboxSelectMultiple, Select
 
-from .models import Author, Tag, Quote
+from .models import Author, Tag, Quote, Comment
 
 
 class AuthorForm(ModelForm):
@@ -29,6 +29,7 @@ class TagForm(ModelForm):
 class QuoteForm(ModelForm):
     quote = TextInput()
     tags = CharField(widget=TextInput(), required=False)
+
     class Meta:
         model = Quote
         fields = ['quote', 'tags', 'author']
@@ -36,3 +37,11 @@ class QuoteForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(QuoteForm, self).__init__(*args, **kwargs)
         self.fields['author'].widget = Select()
+
+
+class CommentForm(ModelForm):
+    comment = TextInput()
+
+    class Meta:
+        model = Comment
+        fields = ['comment']

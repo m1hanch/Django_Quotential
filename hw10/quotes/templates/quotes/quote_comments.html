@@ -16,6 +16,14 @@
             <a class="tag" style="margin-left: 5px;" href="{%url 'quotes:tag_search' tag.name %}">{{tag.name}}</a>
             {% endfor %}
         </div>
+        <form action="{% url 'quotes:add_comment' quote.id %}" method="post">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <input name="comment" type="text" class="form-control" placeholder="Leave a comment" aria-label="Leave a comment"
+                       aria-describedby="button-addon2">
+                <button type="submit" class="btn btn-outline-secondary" id="button-addon2">Comment</button>
+            </div>
+        </form>
     </div>
 </div>
 {% endblock %}
