@@ -45,13 +45,3 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
     html_email_template_name = 'app_auth/password_reset_email.html'
     success_message = "An email with instructions to reset your password has been sent to %(email)s."
     subject_template_name = 'app_auth/password_reset_subject.txt'
-
-    # def form_valid(self, form):
-    #     email = form.cleaned_data['email']
-    #     subject = "Your Password Reset Link"
-    #     body = "This is where you put the password reset message and link."
-    #     if send_email_via_smtp(email, subject, body):
-    #         return super().form_valid(form)
-    #     else:
-    #         form.add_error(None, 'Error sending email')
-    #         return self.form_invalid(form)

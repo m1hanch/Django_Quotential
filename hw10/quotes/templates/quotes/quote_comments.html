@@ -10,10 +10,10 @@
                 </footer>
             </blockquote>
         </div>
-        <!--            TODO delete styles-->
+        <!--TODO delete styles-->
         <div class="card-header" style="display: flex; justify-content: flex-start;">
             Tags: {% for tag in quote.tags.all %}
-            <a class="tag" style="margin-left: 5px;" href="{%url 'quotes:tag_search' tag.name %}">{{tag.name}}</a>
+            <a style="margin-left: 5px;" href="{%url 'quotes:tag_search' tag.name %}">{{tag.name}}</a>
             {% endfor %}
         </div>
         <form action="{% url 'quotes:add_comment' quote.id %}" method="post">

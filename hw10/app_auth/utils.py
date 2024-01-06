@@ -8,7 +8,17 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def send_email_via_smtp(receiver_email, subject, body):
+def send_email_via_smtp(receiver_email, subject, body) -> bool:
+    """
+    The send_email_via_smtp function sends an email to the specified receiver_email address.
+    The subject and body of the email are also specified as parameters.
+
+
+    :param receiver_email: Specify the email address of the recipient
+    :param subject: Set the subject of the email
+    :param body: Specify the content of the email
+    :return: True if the email is sent successfully, and false otherwise
+    """
     smtp_server = os.getenv('SMTP_SERVER')
     smtp_port = int(os.getenv('SMTP_PORT'))
     username = os.getenv('EMAIL_FROM')
