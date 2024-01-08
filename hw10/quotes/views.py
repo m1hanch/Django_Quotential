@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 from django.shortcuts import render, redirect, get_object_or_404
 from .utils import conn, Authors, Quotes
 from django.core.paginator import Paginator
@@ -6,6 +7,10 @@ from .forms import AuthorForm, TagForm, QuoteForm, CommentForm
 from .models import Author, Tag, Quote, Comment
 from django.contrib.auth.models import User
 
+
+def get_top_ten_tags():
+    # Assuming a 'Tag' model exists with a 'quote_set' reverse relationship from a 'Quote' model
+    return Tag.objects.annotate(num_quotes=Count('quote')).order_by('-num_quotes')[:10]
 
 def index(request, page=1):
     """
@@ -20,8 +25,9 @@ def index(request, page=1):
     quotes = Quote.objects.all().order_by('id')  # noqa
     paginator = Paginator(quotes, 10)
     quotes_on_page = paginator.page(page)
+    top_tags = get_top_ten_tags()
     return render(request, template_name='quotes/index.html',
-                  context={'quotes': quotes_on_page})
+                  context={'quotes': quotes_on_page, 'top_tags': top_tags})
 
 
 @login_required
@@ -128,8 +134,8 @@ def add_comment(request, quote_id):
     :param quote_id: Find the quote that is being commented on
     :return: A rendered template
     """
-    quote = Quote.objects.filter(pk=quote_id).first() # noqa
-    comments = Comment.objects.filter(quote=quote) # noqa
+    quote = Quote.objects.filter(pk=quote_id).first()  # noqa
+    comments = Comment.objects.filter(quote=quote)  # noqa
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -140,3 +146,5 @@ def add_comment(request, quote_id):
         else:
             print(form.errors)
     return render(request, template_name='quotes/quote_comments.html', context={'quote': quote, 'comments': comments})
+
+

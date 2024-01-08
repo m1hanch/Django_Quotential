@@ -18,7 +18,9 @@
                 Tags: {% for tag in quote.tags.all %}
                 <a class="tag" style="margin-left: 5px" href="{%url 'quotes:tag_search' tag.name %}">{{tag.name}}</a>
                 {% endfor %}
-                <a style="margin-left: auto;" href="{%url 'quotes:quote_comments' quote.id%}">comment</a>
+                <a style="margin-left: auto;" type="button" class="tag"
+                        href="{%url 'quotes:quote_comments' quote.id%}">Comment
+                </a>
             </div>
         </div>
         {% endfor %}
@@ -27,47 +29,12 @@
     <!-- Top ten tags -->
     <div class="col-md-4 tags-box">
 
-        <h2>Top Ten tags</h2>
-
-        <span class="tag-item">
-            <a class="tag" style="font-size: 28px" href="/quotes/love/">love</a>
-            </span>
-
-        <span class="tag-item">
-            <a class="tag" style="font-size: 26px" href="/quotes/inspirational/">inspirational</a>
-            </span>
-
-        <span class="tag-item">
-            <a class="tag" style="font-size: 26px" href="/quotes/life/">life</a>
-            </span>
-
-        <span class="tag-item">
-            <a class="tag" style="font-size: 24px" href="/quotes/humor/">humor</a>
-            </span>
-
-        <span class="tag-item">
-            <a class="tag" style="font-size: 22px" href="/quotes/books/">books</a>
-            </span>
-
-        <span class="tag-item">
-            <a class="tag" style="font-size: 14px" href="/quotes/reading/">reading</a>
-            </span>
-
-        <span class="tag-item">
-            <a class="tag" style="font-size: 10px" href="/quotes/friendship/">friendship</a>
-            </span>
-
-        <span class="tag-item">
-            <a class="tag" style="font-size: 8px" href="/quotes/friends/">friends</a>
-            </span>
-
-        <span class="tag-item">
-            <a class="tag" style="font-size: 8px" href="/quotes/truth/">truth</a>
-            </span>
-
-        <span class="tag-item">
-            <a class="tag" style="font-size: 6px" href="/quotes/simile/">simile</a>
-            </span>
+        <h2>Top 10 tags</h2>
+        {% for tag in top_tags %}
+        <span class="tag-item" style="font-size: 20px">
+            <a class="btn btn-info" href="{% url 'quotes:tag_search' tag.name %}">{{ tag.name }}</a>
+        </span>
+        {% endfor %}
 
 
     </div>
