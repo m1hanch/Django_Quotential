@@ -9,8 +9,8 @@ from django.contrib.auth.models import User
 
 
 def get_top_ten_tags():
-    # Assuming a 'Tag' model exists with a 'quote_set' reverse relationship from a 'Quote' model
     return Tag.objects.annotate(num_quotes=Count('quote')).order_by('-num_quotes')[:10]
+
 
 def index(request, page=1):
     """
@@ -146,5 +146,3 @@ def add_comment(request, quote_id):
         else:
             print(form.errors)
     return render(request, template_name='quotes/quote_comments.html', context={'quote': quote, 'comments': comments})
-
-

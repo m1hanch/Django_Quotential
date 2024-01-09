@@ -1,13 +1,14 @@
 {% extends 'quotes/base.html' %}
 {% block content %}
 {% load extract %}
+{% load static %}
 <div class="row">
     <div class="col-md-8">
         {% for quote in quotes %}
         <div class="card mb-3">
             <div class="card-body">
                 <blockquote class="blockquote mb-0">
-                    <p>{{quote.quote}}</p>
+                    <p style="font-family: 'Papyrus';">{{quote.quote}}</p>
                     <footer class="blockquote-footer">{{quote.author.fullname}} (<a
                             href="{% url 'quotes:author_detail' quote.author.id %}">About</a>)
                     </footer>
@@ -19,8 +20,11 @@
                 <a class="tag" style="margin-left: 5px" href="{%url 'quotes:tag_search' tag.name %}">{{tag.name}}</a>
                 {% endfor %}
                 <a style="margin-left: auto;" type="button" class="tag"
-                        href="{%url 'quotes:quote_comments' quote.id%}">Comment
+                   href="{%url 'quotes:quote_comments' quote.id%}">Comment
                 </a>
+<!--                <div class="btn-danger">-->
+<!--                    <button class="button-arounder">Hover Me</button>-->
+<!--                </div>-->
             </div>
         </div>
         {% endfor %}
