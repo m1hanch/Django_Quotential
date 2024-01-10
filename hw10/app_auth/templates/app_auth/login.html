@@ -1,21 +1,5 @@
 {% extends 'quotes/base.html' %}
 {% block content%}
-<!--<form>-->
-<!--  <div class="mb-3">-->
-<!--    <label for="exampleInputEmail1" class="form-label">Email address</label>-->
-<!--    <input type="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">-->
-<!--    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
-<!--  </div>-->
-<!--  <div class="mb-3">-->
-<!--    <label for="exampleInputPassword1" class="form-label">Password</label>-->
-<!--    <input type="password" class="form-control" id="exampleInputPassword1">-->
-<!--  </div>-->
-<!--  <div class="mb-3 form-check">-->
-<!--    <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
-<!--    <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
-<!--  </div>-->
-<!--  <button type="submit" class="btn btn-primary">Submit</button>-->
-<!--</form>-->
 <div class="container mt-3">
     <h2>Login User</h2>
 
@@ -49,9 +33,10 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
         <button type="reset" class="btn btn-secondary">Reset</button>
-        <div class="small text-center">
-            <a href="{% url 'app_auth:password_reset' %}" class="text-center"><i>Forgot Password?</i></a>
-        </div>
+
     </form>
+    <div class="small text-left" style="margin-top: 5px">
+        <a href="{% url 'app_auth:password_reset' %}" class="text-left"><i>Forgot Password?</i></a>
+    </div>
 </div>
 {%endblock %}
