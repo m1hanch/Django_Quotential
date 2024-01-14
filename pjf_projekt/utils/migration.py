@@ -3,7 +3,7 @@ import os
 from pymongo import MongoClient
 from dotenv import load_dotenv
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', "hw10.settings")
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', "pjf_projekt.settings")
 django.setup()
 
 # Load secret .env file

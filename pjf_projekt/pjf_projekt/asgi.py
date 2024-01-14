@@ -1,5 +1,5 @@
 """
-ASGI config for hw10 project.
+ASGI config for pjf_projekt project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hw10.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pjf_projekt.settings')
 
 application = get_asgi_application()

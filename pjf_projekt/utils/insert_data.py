@@ -6,7 +6,7 @@ import os
 from dotenv import load_dotenv
 # Load secret .env file
 load_dotenv()
-connect(db='hw10',
+connect(db='pjf_projekt',
         host=f'mongodb+srv://mihanch:{os.getenv("MONGO_PASS")}@cluster0.xo49jrs.mongodb.net/')
 
 
