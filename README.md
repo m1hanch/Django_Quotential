@@ -18,4 +18,5 @@ To run this project, you will need to add the following environment variables to
 `SMTP_PASSWORD` - The password for the SMTP email server.  
 
 ## General look
-![image](https://github.com/m1hanch/PJF_Iereshchenko/assets/92646976/46018a04-2ad1-4db2-b823-0b10d84c7914)
+![image](https://github.com/m1hanch/PJF_Iereshchenko/assets/92646976/756e521e-384b-4c7b-abf0-e0a2c4a326d9)
+
